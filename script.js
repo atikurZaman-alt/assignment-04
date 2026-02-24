@@ -98,12 +98,7 @@ function toggleStyle(id) {
 
   const selected = document.getElementById(id);
 
-  selected.classList.remove("bg-[#F1F2F4]", "text-black");
-  selected.classList.add("bg-[#3B82F6]", "text-white");
-
-  if (id === "all-filter-btn") currentTab = "all";
-  if (id === "interview-filter-btn") currentTab = "Interview";
-  if (id === "rejected-filter-btn") currentTab = "Rejected";
+  
 
   filterCards();
 }
