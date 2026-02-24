@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker</title>
+
+    <!-- tailwinds css -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+
+    <header class="max-w-6xl mx-auto p-4">
+
+      <h1 class="text-[35px] font-bold text-[#002C5C] mb-6">
+        Job Application Tracker
+      </h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        
+        <div class="bg-white shadow rounded-lg p-6">
+          <h2 class="text-[#64748B]">Total</h2>
+          <p id="total" class="font-bold text-[#002C5C]">0</p>
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-6">
+          <h2 class="text-[#64748B]">Interview</h2>
+          <p id="interviewCount" class="font-bold text-green-600">0</p>
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-6">
+          <h2 class="text-[#64748B]">Rejected</h2>
+          <p id="rejectedCount" class="font-bold text-red-600">0</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-[28px] font-bold">Available Jobs</h2>
+        <span id="tabCount" class="text-[#64748B]">0 Jobs</span>
+      </div>
+
+      <div class="space-x-3">
+        <button
+          onclick="toggleStyle('all-filter-btn')"
+          class="bg-[#3B82F6] text-white px-6 py-2 rounded cursor-pointer"
+          id="all-filter-btn"
+        >
+          All
+        </button>
+        <button
+          onclick="toggleStyle('interview-filter-btn')"
+          class="bg-[#F1F2F4] px-6 py-2 rounded cursor-pointer"
+          id="interview-filter-btn"
+        >
+          Interview
+        </button>
+        <button
+          onclick="toggleStyle('rejected-filter-btn')"
+          class="bg-[#F1F2F4] px-6 py-2 rounded cursor-pointer"
+          id="rejected-filter-btn"
+        >
+          Rejected
+        </button>
+      </div>
+
+      <section id="filtered-section"></section>
+
+      <section id="allCards" class="mt-8 space-y-6">
+        <!-- card 1 -->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="companyName text-[20px] font-bold">Mobile First Corp</p>
+              <p class="position text-[#64748B]">React Native Developer</p>
+              <p class="location text-[#64748B]">9A Dhanmondi, Dhaka</p>
+              <p class="type text-[#64748B]">Remote • Full-time</p>
+              <p class="salary text-[#64748B]">$130,000 - $175,000</p>
+              <p class="deadline text-[#64748B]">Deadline : 28 February 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Build cross-platform mobile applications using React Native. Work
+              on products used by millions of users worldwide.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 2 -->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">WebFlow Agency</p>
+              <p class="text-[#64748B]">Web Designer & Developer</p>
+              <p class="text-[#64748B]">Motijheel, Dhaka</p>
+              <p class="text-[#64748B]">Part-time</p>
+              <p class="text-[#64748B]">$80,000 - $120,000</p>
+              <p class="text-[#64748B]">Deadline : 07 March 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Create stunning web experiences for high-profile clients. Must
+              have portfolio and experience with modern web design trends.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 3-->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">DataViz Solutions</p>
+              <p class="text-[#64748B]">Data Visualization Specialist</p>
+              <p class="text-[#64748B]">Kazipara, Mirpur, Dhaka</p>
+              <p class="text-[#64748B]">Full-time</p>
+              <p class="text-[#64748B]">$30,000 - $75,000</p>
+              <p class="text-[#64748B]">Deadline : 24 February 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Transform complex data into compelling visualizations. Required
+              skills: D3.js, React, and strong analytical thinking.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 4-->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">CloudFirst Inc</p>
+              <p class="text-[#64748B]">Backend Developer</p>
+              <p class="text-[#64748B]">Mohakhali DOHS, Dhaka</p>
+              <p class="text-[#64748B]">Full-time</p>
+              <p class="text-[#64748B]">$90,000 - $155,000</p>
+              <p class="text-[#64748B]">Deadline : 11 March 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Design and maintain scalable backend systems using Python and AWS.
+              Work with modern DevOps practices and cloud infrastructure.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 5-->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">Innovation Labs</p>
+              <p class="text-[#64748B]">UI/UX Engineer</p>
+              <p class="text-[#64748B]">Green Road, Dhaka</p>
+              <p class="text-[#64748B]">Part-time</p>
+              <p class="text-[#64748B]">$30,000 - $40,000</p>
+              <p class="text-[#64748B]">Deadline : 26 February 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Create beautiful and functional user interfaces for our suite of
+              products. Strong design skills and frontend development expertise
+              required.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 6-->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">MegaCorp Solutions</p>
+              <p class="text-[#64748B]">JavaScript Developer</p>
+              <p class="text-[#64748B]">Mohammadpur, Dhaka</p>
+              <p class="text-[#64748B]">Full-time</p>
+              <p class="text-[#64748B]">$90,000 - $150,000</p>
+              <p class="text-[#64748B]">Deadline : 20 March 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Build enterprise applications with JavaScript and modern
+              frameworks. We offer competitive compensation, health insurance,
+              and professional development opportunities.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 7-->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">StartupXYZ</p>
+              <p class="text-[#64748B]">Full Stack Engineer</p>
+              <p class="text-[#64748B]">Banani, Dhaka</p>
+              <p class="text-[#64748B]">Full-time</p>
+              <p class="text-[#64748B]">$130,000 - $200,000</p>
+              <p class="text-[#64748B]">Deadline : 3 April 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              Join our fast-growing startup and work on our core platform.
+              Experience with Node.js and React required. Great benefits and
+              equity package included.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+
+        <!-- card 8-->
+        <div class="card flex justify-between p-6 bg-white shadow rounded-lg">
+          <!-- left part  -->
+          <div class="space-y-5">
+            <div class="">
+              <p class="text-[20px] font-bold">TechCorp Industries</p>
+              <p class="text-[#64748B]">Senior Frontend Developer</p>
+              <p class="text-[#64748B]">Uttara, Dhaka</p>
+              <p class="text-[#64748B]">Full-time</p>
+              <p class="text-[#64748B]">$130,000 - $175,000</p>
+              <p class="text-[#64748B]">Deadline : 25 February 2026</p>
+            </div>
+
+            <p class="status">Not Applied</p>
+            <p class="notes text-[14px]">
+              We are looking for an experienced Frontend Developer to build
+              scalable web applications using React and TypeScript. You will
+              work with a talented team on cutting-edge projects.
+            </p>
+
+            <div class="space-x-3">
+              <button
+                class="interview-btn border border-[#10B981] text-[#10B981] font-semibold px-4 py-2 rounded hover:bg-[#10B981] hover:text-white transition-colors cursor-pointer"
+              >
+                Interview
+              </button>
+              <button
+                class="rejected-btn border border-[#EF4444] text-[#EF4444] font-semibold px-4 py-2 rounded hover:bg-[#EF4444] hover:text-white transition-colors cursor-pointer"
+              >
+                Rejected
+              </button>
+            </div>
+          </div>
+          <!-- right part -->
+          <div>
+            <img class="cursor-pointer" src="./trash.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section id="filtered-section">
+        <div id="no-jobs" class="hidden text-center mt-10">
+          <img class="w-20 mx-auto mb-4" src="./jobs.png" alt="" />
+          <h2 class="text-xl font-bold">No jobs available</h2>
+          <p class="text-[#64748B]" id="no-jobs-subtitle">
+            Check back soon for new job opportunities
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- javascript  -->
+    <script src="./script.js"></script>
+  </body>
+</html>
